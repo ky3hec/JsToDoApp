@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS ToDo list App</title>
+    <link rel="stylesheet" href="./css/tailwind.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="p-8 sm:p-16 bg-gray-600 text-white">
+    <header class="m-auto max-w-md w-full overflow-hidden">
+      <h1
+        class="uppercase text-2xl block font-bold py-6 text-gray-400 tracking-widest text-left"
+      >
+        My tasks for
+      </h1>
+      <div class="py-3">
+        <p data-current-date>Today</p>
+      </div>
+    </header>
+    <main class="m-auto max-w-md w-full overflow-hidden">
+      <div class="flex items-center justify-between relative">
+        <input
+          type="text"
+          data-todo-input
+          placeholder="Add ToDo"
+          class="p-4 pr-20 border-t-2 border-green-500 rounded bg-gray-900 text-white w-full shadow-inner outline-none"
+        />
+        <button
+          data-add-todo-btn
+          class="text-green-400 hover:text-green-300 bg-gray-900 font-semibold py-2 px-4 absolute right-0 mr-2 focus:outline-none"
+        >
+          Add
+        </button>
+      </div>
+      <ul class="m-0 my-4 p-0 list-none w-full" data-todo-list>
+        <span class="text-center inline-block w-full p-4 text-gray-500 text-xs">
+          Add a new item to get started!
+        </span>
+      </ul>
+    </main>
+    <script src="./js/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.todo-item {
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  margin-top: 0.2rem;
+  border-radius: 0.2rem;
+}
+.todo-item:hover {
+  border-color: rgb(237, 137, 54, 1);
+  border-left-width: 4px;
+}
+.todo-item.active {
+  border-color: #48bb78;
+  border-left-width: 4px;
+  background-color: #d1d5db;
+}
