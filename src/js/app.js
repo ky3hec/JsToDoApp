@@ -2,6 +2,7 @@
 import { renderTodoList, renderInputs } from "./controller.js";
 import { loadTodosFromServer, fillTodoList } from "./model.js";
 import { renderCurrentdate } from "./view.js";
+import css from "@/css/style.css";
 
 let userId = 1;
 let pageNumber = 1;
