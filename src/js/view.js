@@ -4,7 +4,7 @@ const currentDateElement = document.querySelector("[data-current-date]");
 const todoInputElement = document.querySelector("[data-todo-input]");
 const addTodoBtnElement = document.querySelector("[data-add-todo-btn]");
 
-function renderCurrentdate() {
+function setCurrentDate() {
   let options = { weekday: "long", month: "short", day: "numeric" };
   let today = new Date();
   currentDateElement.innerText = today.toLocaleDateString("en-US", options);
@@ -23,16 +23,16 @@ function renderTodoItemElement(
     "flex items-center justify-between relative todo-item bg-gray-500";
   newTodoItemElement.classList += active ? " active" : "";
   newTodoItemElement.appendChild(
-    renderDoneCheckbox(id, completed, setTodoCompleted)
+    createDoneCheckbox(id, completed, setTodoCompleted)
   );
   newTodoItemElement.appendChild(
-    renderTodoTitle(id, title, completed, setTodoActive)
+    createTodoTitle(id, title, completed, setTodoActive)
   );
-  newTodoItemElement.appendChild(renderTodoRemoveBtn(id, removeTodo));
+  newTodoItemElement.appendChild(createTodoRemoveBtn(id, removeTodo));
   todoListElement.appendChild(newTodoItemElement);
 }
 
-function renderDoneCheckbox(id, completed, action) {
+function createDoneCheckbox(id, completed, action) {
   let checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.checked = completed ? true : false;
@@ -40,7 +40,7 @@ function renderDoneCheckbox(id, completed, action) {
   checkbox.addEventListener("click", (e) => action(id));
   return checkbox;
 }
-function renderTodoTitle(id, title, completed, action) {
+function createTodoTitle(id, title, completed, action) {
   let todoTitle = document.createElement("div");
   todoTitle.innerText = title;
   todoTitle.classList += "flex-auto";
@@ -48,7 +48,7 @@ function renderTodoTitle(id, title, completed, action) {
   todoTitle.addEventListener("click", (e) => action(id));
   return todoTitle;
 }
-function renderTodoRemoveBtn(
+function createTodoRemoveBtn(
   id,
   action = (e) => {
     console.log(e.target.innerText, id);
@@ -62,13 +62,11 @@ function renderTodoRemoveBtn(
   btnRemove.addEventListener("click", (e) => action(id));
   return btnRemove;
 }
-function renderInput(action) {}
-
 export {
   todoInputElement,
   currentDateElement,
   addTodoBtnElement,
   todoListElement,
-  renderCurrentdate,
+  setCurrentDate,
   renderTodoItemElement,
 };

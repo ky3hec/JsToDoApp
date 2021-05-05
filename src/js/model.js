@@ -50,12 +50,13 @@ const toggleTodoActive = function (id) {
   }
 };
 
-const loadTodosFromServer = async function (requestURL) {
+const loadTodosFromServer = async function (userId, pageNumber) {
+  const requestURL = `https://jsonplaceholder.typicode.com/users/${userId}/todos?_page=${pageNumber}`;
   try {
     const response = await fetch(requestURL);
     if (response.ok) {
       const todos = await response.json();
-      return Promise.resolve(todos);
+      return todos;
     } else {
       return Promise.reject(response.status);
     }
