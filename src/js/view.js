@@ -15,7 +15,8 @@ function renderTodoItemElement(
   { id, title, completed, active },
   removeTodo,
   setTodoActive,
-  setTodoCompleted
+  setTodoCompleted,
+  todoList
 ) {
   let newTodoItemElement = document.createElement("li");
   newTodoItemElement.dataset.id = id;
@@ -23,43 +24,38 @@ function renderTodoItemElement(
     "flex items-center justify-between relative todo-item bg-gray-500";
   newTodoItemElement.classList += active ? " active" : "";
   newTodoItemElement.appendChild(
-    createDoneCheckbox(id, completed, setTodoCompleted)
+    createDoneCheckbox(id, completed, setTodoCompleted, todoList)
   );
   newTodoItemElement.appendChild(
-    createTodoTitle(id, title, completed, setTodoActive)
+    createTodoTitle(id, title, completed, setTodoActive, todoList)
   );
-  newTodoItemElement.appendChild(createTodoRemoveBtn(id, removeTodo));
+  newTodoItemElement.appendChild(createTodoRemoveBtn(id, removeTodo, todoList));
   todoListElement.appendChild(newTodoItemElement);
 }
 
-function createDoneCheckbox(id, completed, action) {
+function createDoneCheckbox(id, completed, action, todoList) {
   let checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.checked = completed ? true : false;
   checkbox.classList += "m-3";
-  checkbox.addEventListener("click", (e) => action(id));
+  checkbox.addEventListener("click", (e) => action(id, todoList));
   return checkbox;
 }
-function createTodoTitle(id, title, completed, action) {
+function createTodoTitle(id, title, completed, action, todoList) {
   let todoTitle = document.createElement("div");
   todoTitle.innerText = title;
   todoTitle.classList += "flex-auto";
   todoTitle.classList += completed ? " line-through text-gray-600" : "";
-  todoTitle.addEventListener("click", (e) => action(id));
+  todoTitle.addEventListener("click", (e) => action(id, todoList));
   return todoTitle;
 }
-function createTodoRemoveBtn(
-  id,
-  action = (e) => {
-    console.log(e.target.innerText, id);
-  }
-) {
+function createTodoRemoveBtn(id, action, todoList) {
   let btnRemove = document.createElement("button");
   btnRemove.innerText = "Remove";
   btnRemove.classList += `py-2 px-4 
   font-semibold text-red-400 hover:text-red-300 
   focus:outline-none flex-none`;
-  btnRemove.addEventListener("click", (e) => action(id));
+  btnRemove.addEventListener("click", (e) => action(id, todoList));
   return btnRemove;
 }
 export {
