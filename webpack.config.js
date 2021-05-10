@@ -21,6 +21,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      title: "JS ToDo list App",
+      favicon: "favicon.ico",
       template: "index.html",
     }),
     new CopyPlugin({
@@ -40,6 +42,18 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-proposal-object-rest-spread"],
+            cacheDirectory: true,
+          },
+        },
       },
     ],
   },

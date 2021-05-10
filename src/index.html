@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>JS ToDo list App</title>
-    <link rel="shortcut icon" href="favicon.ico" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body class="p-8 sm:p-16 bg-gray-600 text-white">
     <header class="m-auto max-w-md w-full overflow-hidden">
@@ -20,18 +19,23 @@
       <div class="flex items-center justify-between relative">
         <input
           type="text"
+          disabled
           data-todo-input
           placeholder="Add ToDo"
-          class="p-4 pr-20 border-t-2 border-green-500 rounded bg-gray-900 text-white w-full shadow-inner outline-none"
+          class="p-4 pr-20 border-t-2 border-green-500 rounded bg-gray-900 text-white w-full shadow-inner outline-none disabled:bg-gray-200"
         />
         <button
+          disabled
           data-add-todo-btn
           class="text-green-400 hover:text-green-300 bg-gray-900 font-semibold py-2 px-4 absolute right-0 mr-2 focus:outline-none"
         >
           Add
         </button>
       </div>
-      <ul class="m-0 my-4 p-0 list-none w-full" data-todo-list>
+      <div class="m-0 my-4 w-full flex justify-center" data-load-spinner>
+        <div></div>
+      </div>
+      <ul class="m-0 my-4 p-0 list-none w-full hidden" data-todo-list>
         <span class="text-center inline-block w-full p-4 text-gray-500 text-xs">
           Add a new item to get started!
         </span>

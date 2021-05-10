@@ -3,6 +3,7 @@ const todoListElement = document.querySelector("[data-todo-list]");
 const currentDateElement = document.querySelector("[data-current-date]");
 const todoInputElement = document.querySelector("[data-todo-input]");
 const addTodoBtnElement = document.querySelector("[data-add-todo-btn]");
+const dataLoadSpinner = document.querySelector("[data-load-spinner]");
 
 function setCurrentDate() {
   let options = { weekday: "long", month: "short", day: "numeric" };
@@ -63,6 +64,7 @@ export {
   currentDateElement,
   addTodoBtnElement,
   todoListElement,
+  dataLoadSpinner,
   setCurrentDate,
   renderTodoItemElement,
 };

@@ -19,3 +19,31 @@
   border-left-width: 4px;
   background-color: #d1d5db;
 }
+input[data-todo-input] {
+  cursor: text;
+}
+input[data-todo-input]:disabled {
+  cursor: not-allowed;
+  background-color: rgba(156, 163, 175, 0.5);
+}
+button[data-add-todo-btn]:disabled {
+  cursor: not-allowed;
+}
+
+div[data-load-spinner] > div {
+  /* content: ""; */
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.5rem;
+  border-radius: 50%;
+  border-color: #48bb78 transparent #48bb78 transparent;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

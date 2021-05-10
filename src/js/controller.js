@@ -4,6 +4,7 @@ import {
   todoListElement,
   todoInputElement,
   addTodoBtnElement,
+  dataLoadSpinner,
 } from "./view.js";
 
 function renderTodoList(todoList) {
@@ -17,6 +18,14 @@ function renderTodoList(todoList) {
       todoList
     );
   });
+}
+function enableInputs() {
+  todoInputElement.removeAttribute("disabled");
+  addTodoBtnElement.removeAttribute("disabled");
+}
+function showTodoList(params) {
+  todoListElement.classList.remove("hidden");
+  dataLoadSpinner.classList.add("hidden");
 }
 function wireUpInputs(todoList) {
   todoInputElement.addEventListener("keyup", (e) => {
@@ -34,7 +43,7 @@ function deleteTodo(id, todoList) {
 }
 
 function setTodoActive(id, todoList) {
-  todoList.todotoggleTodoActive(id);
+  todoList.toggleTodoActive(id);
   renderTodoList(todoList);
 }
 function setTodoCompleted(id, todoList) {
@@ -50,4 +59,4 @@ function addNewTodo(todoList) {
   }
 }
 
-export { renderTodoList, wireUpInputs };
+export { renderTodoList, wireUpInputs, enableInputs, showTodoList };
