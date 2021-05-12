@@ -1,4 +1,4 @@
-import { todoList } from "./model.js";
+import todoList from "./model.js";
 import {
   renderTodoItemElement,
   todoListElement,
@@ -34,6 +34,7 @@ function wireUpInputs(todoList) {
     }
   });
   addTodoBtnElement.addEventListener("click", (e) => {
+    e.preventDefault();
     addNewTodo(todoList);
   });
 }

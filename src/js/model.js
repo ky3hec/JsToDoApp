@@ -49,8 +49,6 @@ const todoList = (function () {
       if (response.ok) {
         const todos = await response.json();
         return todos;
-      } else {
-        return Promise.reject(response.status);
       }
     } catch (error) {
       return Promise.reject(error);
@@ -76,12 +74,4 @@ const todoList = (function () {
   };
 })();
 
-export {
-  todoList,
-  // fillTodoList,
-  // loadTodosFromServer,
-  // removeTodo,
-  // addTodo,
-  // toggleTodoCompleted,
-  // toggleTodoActive,
-};
+export default todoList;
