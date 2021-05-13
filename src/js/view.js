@@ -2,6 +2,7 @@
 const todoListElement = document.querySelector("[data-todo-list]");
 const currentDateElement = document.querySelector("[data-current-date]");
 const todoInputElement = document.querySelector("[data-todo-input]");
+const todoInputForm = document.querySelector("[data-todo-input-form]");
 const addTodoBtnElement = document.querySelector("[data-add-todo-btn]");
 const dataLoadSpinner = document.querySelector("[data-load-spinner]");
 
@@ -65,6 +66,7 @@ export {
   addTodoBtnElement,
   todoListElement,
   dataLoadSpinner,
+  todoInputForm,
   setCurrentDate,
   renderTodoItemElement,
 };

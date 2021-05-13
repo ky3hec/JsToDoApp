@@ -4,6 +4,7 @@ import {
   todoListElement,
   todoInputElement,
   addTodoBtnElement,
+  todoInputForm,
   dataLoadSpinner,
 } from "./view.js";
 
@@ -28,12 +29,7 @@ function showTodoList(params) {
   dataLoadSpinner.classList.add("hidden");
 }
 function wireUpInputs(todoList) {
-  todoInputElement.addEventListener("keyup", (e) => {
-    if (e.keyCode === 13) {
-      addNewTodo(todoList);
-    }
-  });
-  addTodoBtnElement.addEventListener("click", (e) => {
+  todoInputForm.addEventListener("submit", (e) => {
     e.preventDefault();
     addNewTodo(todoList);
   });

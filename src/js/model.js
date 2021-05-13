@@ -44,14 +44,12 @@ const todoList = (function () {
   };
   const loadTodosFromServer = async function (userId, pageNumber) {
     const requestURL = `https://jsonplaceholder.typicode.com/users/${userId}/todos?_page=${pageNumber}`;
-    try {
-      const response = await fetch(requestURL);
-      if (response.ok) {
-        const todos = await response.json();
-        return todos;
-      }
-    } catch (error) {
-      return Promise.reject(error);
+    const response = await fetch(requestURL);
+    if (response.ok) {
+      const todos = await response.json();
+      return todos;
+    } else {
+      return Promise.reject(response.status);
     }
   };
   const fillTodoList = function (data) {
