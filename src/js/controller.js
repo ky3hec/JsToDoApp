@@ -1,52 +1,59 @@
-import {
-  getTodoList,
-  addTodo,
-  removeTodo,
-  toggleTodoCompleted,
-  toggleTodoActive,
-} from "./model.js";
+import todoList from "./model.js";
 import {
   renderTodoItemElement,
   todoListElement,
   todoInputElement,
   addTodoBtnElement,
+  todoInputForm,
+  dataLoadSpinner,
 } from "./view.js";
 
-function renderTodoList() {
+function renderTodoList(todoList) {
   todoListElement.innerHTML = "";
-  let todoList = getTodoList();
-  todoList.forEach((todo) => {
-    renderTodoItemElement(todo, deleteTodo, setTodoActive, setTodoCompleted);
+  todoList.getTodoList().forEach((todo) => {
+    renderTodoItemElement(
+      todo,
+      deleteTodo,
+      setTodoActive,
+      setTodoCompleted,
+      todoList
+    );
   });
 }
-function renderInputs() {
-  todoInputElement.addEventListener("keyup", (e) => {
-    if (e.keyCode === 13) {
-      addNewTodo();
-    }
-  });
-  addTodoBtnElement.addEventListener("click", addNewTodo);
+function enableInputs() {
+  todoInputElement.removeAttribute("disabled");
+  addTodoBtnElement.removeAttribute("disabled");
 }
-function deleteTodo(id) {
-  removeTodo(id);
-  renderTodoList();
+function showTodoList(params) {
+  todoListElement.classList.remove("hidden");
+  dataLoadSpinner.classList.add("hidden");
+}
+function wireUpInputs(todoList) {
+  todoInputForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addNewTodo(todoList);
+  });
+}
+function deleteTodo(id, todoList) {
+  todoList.removeTodo(id);
+  renderTodoList(todoList);
 }
 
-function setTodoActive(id) {
-  toggleTodoActive(id);
-  renderTodoList();
+function setTodoActive(id, todoList) {
+  todoList.toggleTodoActive(id);
+  renderTodoList(todoList);
 }
-function setTodoCompleted(id) {
-  toggleTodoCompleted(id);
-  renderTodoList();
+function setTodoCompleted(id, todoList) {
+  todoList.toggleTodoCompleted(id);
+  renderTodoList(todoList);
 }
-function addNewTodo() {
+function addNewTodo(todoList) {
   let todoTitle = todoInputElement.value;
   if (todoTitle !== "") {
-    addTodo({ title: todoTitle, completed: false });
+    todoList.addTodo({ title: todoTitle, completed: false });
     todoInputElement.value = "";
-    renderTodoList();
+    renderTodoList(todoList);
   }
 }
 
-export { renderTodoList, renderInputs };
+export { renderTodoList, wireUpInputs, enableInputs, showTodoList };
